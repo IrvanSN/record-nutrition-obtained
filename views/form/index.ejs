@@ -1,0 +1,46 @@
+<%- include('../parts/header.ejs') %>
+<body>
+
+<!-- Wrapper Start -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <%- include('../parts/navbar.ejs') %>
+
+    <!-- Sidebar Start -->
+    <%- include('../parts/sidebar.ejs', {isActive : 'forms'}) %>
+
+    <!-- Main Container Start -->
+    <main class="main--container">
+        <!-- Page Header Start -->
+        <section class="page--header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Page Title Start -->
+                        <h2 class="page--title h5">Daftar Formulir</h2>
+                        <!-- Page Title End -->
+
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item active"><a href="/form">Formulir</a></li>
+                            <li class="breadcrumb-item active"><a href="/form">Daftar Formulir</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page Header End -->
+
+        <!-- Main Content Start -->
+        <section class="main--content">
+            <p>Forms</p>
+        </section>
+        <!-- Main Content End -->
+
+        <%- include('../parts/main-footer.ejs') %>
+    </main>
+    <!-- Main Container End -->
+</div>
+<!-- Wrapper End -->
+
+<!-- Scripts -->
+<%- include('../parts/scripts') %>

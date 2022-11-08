@@ -1,0 +1,40 @@
+<!--Sidebar Start-->
+<aside class="sidebar" data-trigger="scrollbar">
+
+    <!-- Sidebar Navigation Start -->
+    <div class="sidebar--nav">
+        <ul>
+            <li>
+                <ul>
+                    <li class="<%- isActive === 'home-page' ? 'active' : ''; %>">
+                        <a href="/">
+                            <i class="fa fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <ul>
+                    <li class="open">
+                        <a href="#">
+                            <i class="fa fa-book"></i>
+                            <span>Formulir</span>
+                        </a>
+
+                        <ul>
+                            <li class='<%- isActive === 'add-form' ? 'active' : ''; %>'><a href="/form/add">Isi Formulir</a>
+                            </li>
+                            <li class='<%- isActive === 'forms' ? 'active' : ''; %>'><a
+                                        href="/form">Daftar Formulir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- Sidebar Navigation End -->
+
+</aside>
+<!-- Sidebar End -->
