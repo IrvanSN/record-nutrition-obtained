@@ -32,244 +32,306 @@
 
         <!-- Main Content Start -->
         <section class="main--content">
-            <div class="row gutter-20">
+            <form action="/form/add" method="post">
+                <div class="row gutter-20">
 
-                <div class="col-md-6">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Data Auditor</h3>
-                        </div>
 
-                        <div class="panel-content">
-                            <div class="form-group">
-                                <label>
-                                    <span class="label-text">Nama Auditor</span>
-                                    <input type="name" name="name" placeholder="Masukkan nama auditor.." class="form-control">
-                                </label>
+                    <div class="col-md-6">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Data Auditor</h3>
                             </div>
 
-                            <div class="form-group">
-                                <label for="">
-                                    <span class="label-text">Tanggal Audit</span>
-                                </label>
-                                <div class="input-group date" id="audit_date">
-                                    <input type="text" value="05/16/2018 11:31:00" class="form-control" required/>
-                                    <div class="input-group-addon input-group-append">
-                                        <div class="input-group-text">
-                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <div class="panel-content">
+                                <div class="form-group">
+                                    <label>
+                                        <span class="label-text">Nama Auditor</span>
+                                        <input type="text" name="auditorName" placeholder="Masukkan nama auditor.." class="form-control">
+                                        <input type="text" name="foodSupply" id="foodSupply" value="" hidden>
+                                        <input type="text" name="foodLeft" id="foodLeft" value="" hidden>
+                                        <input type="text" name="isFulfilled" id="isFulfilled" value="" hidden>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">
+                                        <span class="label-text">Tanggal Audit</span>
+                                    </label>
+                                    <div class="input-group date" id="audit_date">
+                                        <input type="text" name="auditDate" value="<%= dateNow %>" class="form-control" required/>
+                                        <div class="input-group-addon input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Data Pasien</h3>
-                        </div>
-
-                        <div class="panel-content">
-                            <div class="form-group">
-                                <label>
-                                    <span class="label-text">Nama Pasien</span>
-                                    <input type="name" name="name" placeholder="Masukkan nama pasien..." class="form-control">
-                                </label>
+                    <div class="col-md-6">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Data Pasien</h3>
                             </div>
 
-                            <div class="form-group">
-                                <label for="">
-                                    <span class="label-text">Waktu Makan</span>
-                                </label>
-                                <div class="input-group date" id="eat_date">
-                                    <input type="text" value="05/16/2018 11:31:00" class="form-control" required/>
-                                    <div class="input-group-addon input-group-append">
-                                        <div class="input-group-text">
-                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <div class="panel-content">
+                                <div class="form-group">
+                                    <label>
+                                        <span class="label-text">Nama Pasien</span>
+                                        <input type="name" name="patientName" placeholder="Masukkan nama pasien..." class="form-control">
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">
+                                        <span class="label-text">Waktu Makan</span>
+                                    </label>
+                                    <div class="input-group date" id="eat_date">
+                                        <input type="text" name="eatDate" value="<%= dateBefore %>" class="form-control" required/>
+                                        <div class="input-group-addon input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Formulir Sisa Makanan Pasien</h3>
-                        </div>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Formulir Sisa Makanan Pasien</h3>
+                            </div>
 
-                        <div class="panel-content">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-cells-middle">
-                                    <thead class="text-dark">
-                                    <tr>
-                                        <th>Jenis Menu</th>
-                                        <th>1</th>
-                                        <th>3/4</th>
-                                        <th>1/2</th>
-                                        <th>1/4</th>
-                                        <th>0</th>
-                                        <th>-</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Karbohidrat</td>
-                                        <td><input type="radio" name="kh" value="1.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="kh" value="0.75" onclick="hitung()"></td>
-                                        <td><input type="radio" name="kh" value="0.5" onclick="hitung()"></td>
-                                        <td><input type="radio" name="kh" value="0.25" onclick="hitung()"></td>
-                                        <td><input type="radio" name="kh" value="0.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="kh" value="10" onclick="hitung()" checked></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lauk Hewani</td>
-                                        <td><input type="radio" name="lh" value="1.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="lh" value="0.75" onclick="hitung()"></td>
-                                        <td><input type="radio" name="lh" value="0.5" onclick="hitung()"></td>
-                                        <td><input type="radio" name="lh" value="0.25" onclick="hitung()"></td>
-                                        <td><input type="radio" name="lh" value="0.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="lh" value="10" onclick="hitung()" checked></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lauk Nabati</td>
-                                        <td><input type="radio" name="ln" value="1.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ln" value="0.75" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ln" value="0.5" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ln" value="0.25" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ln" value="0.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ln" value="10" onclick="hitung()" checked></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sayuran</td>
-                                        <td><input type="radio" name="sn" value="1.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="sn" value="0.75" onclick="hitung()"></td>
-                                        <td><input type="radio" name="sn" value="0.5" onclick="hitung()"></td>
-                                        <td><input type="radio" name="sn" value="0.25" onclick="hitung()"></td>
-                                        <td><input type="radio" name="sn" value="0.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="sn" value="10" onclick="hitung()" checked></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Buah</td>
-                                        <td><input type="radio" name="bh" value="1.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="bh" value="0.75" onclick="hitung()"></td>
-                                        <td><input type="radio" name="bh" value="0.5" onclick="hitung()"></td>
-                                        <td><input type="radio" name="bh" value="0.25" onclick="hitung()"></td>
-                                        <td><input type="radio" name="bh" value="0.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="bh" value="10" onclick="hitung()" checked></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Extra</td>
-                                        <td><input type="radio" name="ea" value="1.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ea" value="0.75" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ea" value="0.5" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ea" value="0.25" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ea" value="0.0" onclick="hitung()"></td>
-                                        <td><input type="radio" name="ea" value="10" onclick="hitung()" checked></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="panel-content">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-cells-middle">
+                                        <thead class="text-dark">
+                                        <tr>
+                                            <th>Jenis Menu</th>
+                                            <th>1</th>
+                                            <th>3/4</th>
+                                            <th>1/2</th>
+                                            <th>1/4</th>
+                                            <th>0</th>
+                                            <th>-</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Karbohidrat</td>
+                                            <td><input type="radio" name="kh" value="1.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="kh" value="0.75" onclick="hitung()"></td>
+                                            <td><input type="radio" name="kh" value="0.5" onclick="hitung()"></td>
+                                            <td><input type="radio" name="kh" value="0.25" onclick="hitung()"></td>
+                                            <td><input type="radio" name="kh" value="0.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="kh" value="10" onclick="hitung()" checked></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lauk Hewani</td>
+                                            <td><input type="radio" name="lh" value="1.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="lh" value="0.75" onclick="hitung()"></td>
+                                            <td><input type="radio" name="lh" value="0.5" onclick="hitung()"></td>
+                                            <td><input type="radio" name="lh" value="0.25" onclick="hitung()"></td>
+                                            <td><input type="radio" name="lh" value="0.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="lh" value="10" onclick="hitung()" checked></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lauk Nabati</td>
+                                            <td><input type="radio" name="ln" value="1.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ln" value="0.75" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ln" value="0.5" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ln" value="0.25" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ln" value="0.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ln" value="10" onclick="hitung()" checked></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sayuran</td>
+                                            <td><input type="radio" name="sn" value="1.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="sn" value="0.75" onclick="hitung()"></td>
+                                            <td><input type="radio" name="sn" value="0.5" onclick="hitung()"></td>
+                                            <td><input type="radio" name="sn" value="0.25" onclick="hitung()"></td>
+                                            <td><input type="radio" name="sn" value="0.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="sn" value="10" onclick="hitung()" checked></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Buah</td>
+                                            <td><input type="radio" name="bh" value="1.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="bh" value="0.75" onclick="hitung()"></td>
+                                            <td><input type="radio" name="bh" value="0.5" onclick="hitung()"></td>
+                                            <td><input type="radio" name="bh" value="0.25" onclick="hitung()"></td>
+                                            <td><input type="radio" name="bh" value="0.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="bh" value="10" onclick="hitung()" checked></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Extra</td>
+                                            <td><input type="radio" name="ea" value="1.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ea" value="0.75" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ea" value="0.5" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ea" value="0.25" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ea" value="0.0" onclick="hitung()"></td>
+                                            <td><input type="radio" name="ea" value="10" onclick="hitung()" checked></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Perhitungan</h3>
-                        </div>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Perhitungan</h3>
+                            </div>
 
-                        <div class="panel-content">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-cells-middle">
-                                    <thead class="text-dark">
-                                    <tr>
-                                        <th>Sisa Porsi</th>
-                                        <th>Jumlah</th>
-                                        <th>Dikali</th>
-                                        <th>Hasil</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1 porsi</td>
-                                        <td id="cot1">0</td>
-                                        <td id="mul1">0</td>
-                                        <td id="sum1">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3/4 porsi</td>
-                                        <td id="cot0.75">0</td>
-                                        <td id="mul0.75">1</td>
-                                        <td id="sum0.75">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1/2 porsi</td>
-                                        <td id="cot0.5">0</td>
-                                        <td id="mul0.5">2</td>
-                                        <td id="sum0.5">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1/4 porsi</td>
-                                        <td id="cot0.25">0</td>
-                                        <td id="mul0.25">3</td>
-                                        <td id="sum0.25">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>0 porsi</td>
-                                        <td id="cot0">0</td>
-                                        <td id="mul0">4</td>
-                                        <td id="sum0">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total</b></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td id="total">0</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="panel-content">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-cells-middle">
+                                        <thead class="text-dark">
+                                        <tr>
+                                            <th>Sisa Porsi</th>
+                                            <th>Jumlah</th>
+                                            <th>Dikali</th>
+                                            <th>Hasil</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1 porsi</td>
+                                            <td id="cot1">0</td>
+                                            <td id="mul1">0</td>
+                                            <td id="sum1">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3/4 porsi</td>
+                                            <td id="cot0.75">0</td>
+                                            <td id="mul0.75">1</td>
+                                            <td id="sum0.75">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1/2 porsi</td>
+                                            <td id="cot0.5">0</td>
+                                            <td id="mul0.5">2</td>
+                                            <td id="sum0.5">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1/4 porsi</td>
+                                            <td id="cot0.25">0</td>
+                                            <td id="mul0.25">3</td>
+                                            <td id="sum0.25">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>0 porsi</td>
+                                            <td id="cot0">0</td>
+                                            <td id="mul0">4</td>
+                                            <td id="sum0">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td id="total">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Kesimpulan</h3>
-                        </div>
-
-                        <div class="panel-content">
-                            <div class="form-group row">
-                                <span id="asupan-makanan" class="label-text col-md-12 col-form-label text-md-center"></span>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Kesimpulan</h3>
                             </div>
 
-                            <hr>
+                            <div class="panel-content">
+                                <div class="form-group row">
+                                    <span id="asupan-makanan" class="label-text col-md-12 col-form-label text-md-center"></span>
+                                </div>
 
-                            <div class="form-group row">
-                                <span id="sisa-makanan" class="label-text col-md-12 col-form-label text-md-center"></span>
+                                <hr>
+
+                                <div class="form-group row">
+                                    <span id="sisa-makanan" class="label-text col-md-12 col-form-label text-md-center"></span>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group row">
+                                    <span id="kategori" class="label-text col-md-12 col-form-label text-md-center"></span>
+                                </div>
+
+                                <hr>
+
                             </div>
-
-                            <hr>
-
-                            <div class="form-group row">
-                                <span id="kategori" class="label-text col-md-12 col-form-label text-md-center"></span>
-                            </div>
-
-                            <hr>
-
                         </div>
                     </div>
+
+                    <div class='col-lg-12'>
+                        <div class="panel">
+                            <div class="panel-heading text-center">
+                                <h3 class="panel-title float-none ">AKSI</h3>
+                            </div>
+
+                            <div class="panel-content panel-about text-center">
+                                <div class="row gutter-20">
+                                    <div class='col-lg-12'>
+                                        <button type='submit'
+                                                class="btn btn-rounded btn-success">
+                                            Submit
+                                        </button>
+                                    </div>
+<!--                                    <div class='col-lg-4'>-->
+<!--                                        <form method='post' action='/team/update'>-->
+<!--                                            <input type='text' name='status' value='false' hidden>-->
+<!--                                            <button type='submit'-->
+<!--                                                    class="btn btn-rounded btn-danger">-->
+<!--                                                non-Aktifkan-->
+<!--                                            </button>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                    <div class='col-lg-4'>-->
+<!--                                        <button type="button" class="btn btn-rounded" style='background-color: #ffc107' data-toggle="modal" data-target="#delete-modal">-->
+<!--                                            Hapus-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true">-->
+<!--                        <div class="modal-dialog" role="document">-->
+<!--                            <div class="modal-content">-->
+<!--                                <div class="modal-header">-->
+<!--                                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Akun</h5>-->
+<!--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                        <span aria-hidden="true">&times;</span>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                                <div class="modal-body">-->
+<!--                                    Apakah anda yakin akan menghapus akun ini?-->
+<!--                                </div>-->
+<!--                                <div class="modal-footer">-->
+<!--                                    <button type="button" class="btn btn-rounded" data-dismiss="modal">TUTUP</button>-->
+<!--                                    <form method='POST' action='/team/delete?_method=DELETE'>-->
+<!--                                        <button type='submit' class="btn btn-rounded btn-danger">-->
+<!--                                            IYA, HAPUS AKUN INI-->
+<!--                                        </button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
                 </div>
-
-            </div>
-
+            </form>
         </section>
         <!-- Main Content End -->
 
@@ -314,10 +376,13 @@
     const asupanMakanan = parseInt(document.getElementById('total').textContent) / 16 * 100 > 100 ? 100 : parseInt(document.getElementById('total').textContent) / 16 * 100
 
     document.getElementById('asupan-makanan').innerHTML = `Asupan makanan pasien adalah ${asupanMakanan}%`
+    document.getElementById('foodSupply').value = asupanMakanan
 
     document.getElementById('sisa-makanan').innerHTML = `Sisa makanan pasien adalah ${100 - asupanMakanan}%`
+    document.getElementById('foodLeft').value = 100 - asupanMakanan
 
     document.getElementById('kategori').innerHTML = `Kategori: ${100 - asupanMakanan <= 20 ? 'Gizi pasien <span style="color: green;">terpenuhi</span>' : 'Gizi pasien <span style="color: red;">tidak terpenuhi</span>'}`
+    document.getElementById('isFulfilled').value = 100 - asupanMakanan <= 20;
   }
 
   hitung()
