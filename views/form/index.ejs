@@ -32,7 +32,49 @@
 
         <!-- Main Content Start -->
         <section class="main--content">
-            <p>Forms</p>
+            <div class="panel">
+                <!-- Records List Start -->
+                <div class="records--list" data-title="Daftar Formulir">
+                    <table id="recordsListView">
+                        <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Sisa Makanan</th>
+                            <th>Kategori</th>
+                            <th>Dibuat</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% data.map(item => { %>
+                            <tr>
+                                <td><%= item.patientName %></td>
+                                <td><%= item.foodLeft %>%</td>
+                                <td>
+                                    <span class="label label-<%= item.isFulfilled ? 'success' : 'danger' %>"><%= item.isFulfilled ? 'Terpenuhi' : 'Tidak Terpenuhi' %></span>
+                                </td>
+                                <td><%= moment(item.createdAt).format('LLL') %></td>
+                                <td>
+                                    <div class="dropleft">
+                                        <a href="" class="btn-link" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+
+                                        <div class="dropdown-menu">
+                                            <form action="/form/<%= item._id %>/edit" method="get">
+                                                <button class="dropdown-item">Ubah</button>
+                                            </form>
+                                            <form action="/form/<%= item._id %>/delete" method="post">
+                                                <button class="dropdown-item">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Records List End -->
+            </div>
         </section>
         <!-- Main Content End -->
 
