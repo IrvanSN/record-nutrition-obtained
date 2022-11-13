@@ -29,7 +29,7 @@ module.exports = {
           res.redirect('/');
         })
         .catch(() => {
-          res.redirect('/auth');
+          res.redirect('/auth/signin');
         });
   },
   actionSignout: (req, res) => {

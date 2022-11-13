@@ -7,14 +7,15 @@ const {
   actionDelete,
   actionEdit
 } = require("../controller/form");
+const {isLoginAdmin} = require("../middleware/auth");
 
 const router = express.Router();
 
-router.get('/', index)
-router.get('/add', viewAddForm)
-router.post('/add', actionAdd)
-router.get('/:id/edit', viewEdit)
-router.post('/:id/edit', actionEdit)
-router.post('/:id/delete', actionDelete)
+router.get('/', isLoginAdmin, index)
+router.get('/add', isLoginAdmin, viewAddForm)
+router.post('/add', isLoginAdmin, actionAdd)
+router.get('/:id/edit', isLoginAdmin, viewEdit)
+router.post('/:id/edit', isLoginAdmin, actionEdit)
+router.post('/:id/delete', isLoginAdmin, actionDelete)
 
 module.exports = router;
