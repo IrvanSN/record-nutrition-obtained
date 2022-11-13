@@ -9,8 +9,6 @@ module.exports = {
     const { username, password } = req.body;
     const tokenExpires = 3 * 24 * 60 * 60;
 
-    console.log(username,password)
-
     await User.login(username, password)
         .then((r) => {
           const token = jwt.sign(
@@ -23,7 +21,6 @@ module.exports = {
               process.env.JWT_KEY,
               { expiresIn: tokenExpires },
           );
-          console.log(r)
 
           res.cookie('session', token, {
             httpOnly: true,
