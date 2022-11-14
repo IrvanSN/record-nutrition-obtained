@@ -378,7 +378,7 @@
     document.getElementById('sisa-makanan').innerHTML = `Sisa makanan pasien adalah ${100 - asupanMakanan}%`
     document.getElementById('foodLeft').value = 100 - asupanMakanan
 
-    document.getElementById('kategori').innerHTML = `Kategori: ${100 - asupanMakanan <= 20 ? 'Gizi pasien <span style="color: green;">terpenuhi</span>' : 'Gizi pasien <span style="color: red;">tidak terpenuhi</span>'}`
+    document.getElementById('kategori').innerHTML = `Kategori: ${100 - asupanMakanan <= 20 ? '<span style="color: green;">terpenuhi</span>' : '<span style="color: red;">tidak terpenuhi</span>'}`
     document.getElementById('isFulfilled').value = 100 - asupanMakanan <= 20;
   }
 
