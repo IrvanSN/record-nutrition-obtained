@@ -50,20 +50,24 @@
                                         <input type="text" name="foodLeft" id="foodLeft" value="" hidden>
                                         <input type="text" name="isFulfilled" id="isFulfilled" value="" hidden>
                                     </label>
-                                </div>
 
-                                <div class="form-group">
                                     <label for="">
                                         <span class="label-text">Tanggal Audit</span>
-                                    </label>
-                                    <div class="input-group date" id="audit_date">
-                                        <input type="text" name="auditDate" value="<%= auditDate %>" class="form-control" required/>
-                                        <div class="input-group-addon input-group-append">
-                                            <div class="input-group-text">
-                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                        <div class="input-group date" id="audit_date">
+                                            <input type="text" name="auditDate" value="<%= auditDate %>" class="form-control" required/>
+                                            <div class="input-group-addon input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </label>
+
+
+                                    <label>
+                                        <span class="label-text">Diet</span>
+                                        <input type="text" name="diet" value="Makanan Biasa" class="form-control" disabled>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -79,22 +83,25 @@
                                 <div class="form-group">
                                     <label>
                                         <span class="label-text">Nama Pasien</span>
-                                        <input type="name" name="patientName" placeholder="Masukkan nama pasien..." value="<%= data.patientName %>" class="form-control">
+                                        <input type="text" name="patientName" placeholder="Masukkan nama pasien..." value="<%= data.patientName %>" class="form-control">
                                     </label>
-                                </div>
 
-                                <div class="form-group">
                                     <label for="">
                                         <span class="label-text">Waktu Makan</span>
-                                    </label>
-                                    <div class="input-group date" id="eat_date">
-                                        <input type="text" name="eatDate" value="<%= eatDate %>" class="form-control" required/>
-                                        <div class="input-group-addon input-group-append">
-                                            <div class="input-group-text">
-                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                        <div class="input-group date" id="eat_date">
+                                            <input type="text" name="eatDate" value="<%= eatDate %>" class="form-control" required/>
+                                            <div class="input-group-addon input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </label>
+
+                                    <label>
+                                        <span class="label-text">Ruangan</span>
+                                        <input type="text" name="roomName" placeholder="Masukkan nama ruangan..." value="<%= data.roomName %>" class="form-control">
+                                    </label>
                                 </div>
                             </div>
                         </div>

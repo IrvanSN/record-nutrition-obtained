@@ -13,6 +13,7 @@ module.exports = {
     const auditDate = moment().format("DD/MM/YYYY HH:mm:ss");
     const eatDate = moment().subtract(3, 'hours').format("DD/MM/YYYY HH:mm:ss");
     const data = {
+      roomName: '',
       auditorName: '',
       patientName: '',
       portionLeft: [10, 10, 10, 10, 10, 10]
@@ -21,7 +22,7 @@ module.exports = {
     res.render('form/add-form', { title: 'Tambah Formulir', auditDate, eatDate, data })
   },
   actionAdd: async (req, res) => {
-    let {auditorName, auditDate, patientName, eatDate, kh, lh, ln, sn, bh, ea, foodSupply, foodLeft, isFulfilled} = req.body;
+    let {roomName, auditorName, auditDate, patientName, eatDate, kh, lh, ln, sn, bh, ea, foodSupply, foodLeft, isFulfilled} = req.body;
 
     auditDate = moment(auditDate, "DD/MM/YYYY HH:mm:ss", true);
     eatDate = moment(eatDate, "DD/MM/YYYY HH:mm:ss", true);
@@ -35,7 +36,7 @@ module.exports = {
     }
 
     await Form.create({
-      auditorName, auditDate, patientName, eatDate, portionLeft, foodSupply, foodLeft, isFulfilled
+      roomName, auditorName, auditDate, patientName, eatDate, portionLeft, foodSupply, foodLeft, isFulfilled
     })
         .then(r => {
           res.redirect('/form');
@@ -61,7 +62,7 @@ module.exports = {
   },
   actionEdit: async (req, res) => {
     const { id } = req.params;
-    let {auditorName, auditDate, patientName, eatDate, kh, lh, ln, sn, bh, ea, foodSupply, foodLeft, isFulfilled} = req.body;
+    let {roomName, auditorName, auditDate, patientName, eatDate, kh, lh, ln, sn, bh, ea, foodSupply, foodLeft, isFulfilled} = req.body;
     console.log(req.body)
     auditDate = moment(auditDate, "DD/MM/YYYY HH:mm:ss", true);
     eatDate = moment(eatDate, "DD/MM/YYYY HH:mm:ss", true);
@@ -75,7 +76,7 @@ module.exports = {
     }
 
     Form.findByIdAndUpdate(id, {
-      auditorName, auditDate, patientName, eatDate, portionLeft, foodSupply, foodLeft, isFulfilled
+      roomName, auditorName, auditDate, patientName, eatDate, portionLeft, foodSupply, foodLeft, isFulfilled
     })
         .then(r => {
           res.redirect('/form');

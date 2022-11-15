@@ -29,6 +29,9 @@ const formSchema = new mongoose.Schema({
   },
   isFulfilled: {
     type: Boolean
+  },
+  roomName: {
+    type: String
   }
 },{ timestamps: true })
 
