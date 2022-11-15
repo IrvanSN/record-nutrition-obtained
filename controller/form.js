@@ -1,5 +1,10 @@
 const Form = require('../model/Form');
 const moment = require('moment');
+const { Parser } = require('json2csv');
+const path = require('path');
+const fs = require('fs');
+
+moment.locale('id')
 
 module.exports = {
   index: async (req, res) => {
@@ -95,5 +100,63 @@ module.exports = {
         .catch(e => {
           res.redirect('/form');
         })
+  },
+  exportFormData: async (req, res) => {
+    const dateTime = moment().format('YYYYMMDDhhmmss')
+
+    await Form.find({})
+        .then(async (r) => {
+          const json2csvParser = new Parser();
+          const csvParse = await json2csvParser.parse(
+              r.map((item) => (
+                  {
+                    'Nama Auditor': item.auditorName,
+                    'Tanggal Audit': moment(item.auditDate).format('LLL'),
+                    'Nama Pasien': item.patientName,
+                    'Tanggal Makan': moment(item.eatDate).format('LLL'),
+                    'Karbohidrat': item.portionLeft[0] === 10 ? '-' : item.portionLeft[0],
+                    'Lauk Hewani': item.portionLeft[1] === 10 ? '-' : item.portionLeft[1],
+                    'Lauk Nabati': item.portionLeft[2] === 10 ? '-' : item.portionLeft[2],
+                    'Sayuran': item.portionLeft[3] === 10 ? '-' : item.portionLeft[3],
+                    'Buah': item.portionLeft[4] === 10 ? '-' : item.portionLeft[4],
+                    'Extra': item.portionLeft[5] === 10 ? '-' : item.portionLeft[5],
+                    'Asupan Makanan': item.foodSupply,
+                    'Sisa Makanan': item.foodLeft,
+                    'Kategori': item.isFulfilled ? 'Terpenuhi' : 'Tidak Terpenuhi',
+                    'Dibuat Pada': moment(item.createdAt).format('LLL'),
+                  }
+              ))
+          )
+
+          const filePath = path.join(
+              __dirname,
+              '..',
+              'public',
+              'exports',
+              `csv-${dateTime}.csv`
+          )
+
+          fs.writeFile(filePath, csvParse, (err) => {
+            console.log(err)
+            if (err) {
+              return res
+                  .status(500)
+                  .json({ error: true, code: 5000, message: 'Export data error!' });
+            }
+
+            return res.status(200).json({
+              error: false,
+              code: 200,
+              data: { link: `/exports/csv-${dateTime}.csv` },
+            });
+          })
+        })
+        .catch(() => {
+          res.status(500).json({
+            error: true,
+            code: 5000,
+            message: 'database error!',
+          });
+        });
   }
 }

@@ -377,13 +377,16 @@
 
     document.getElementById('total').firstChild.nodeValue = parseInt(document.getElementById('sum1').textContent) + parseInt(document.getElementById('sum0.75').textContent) + parseInt(document.getElementById('sum0.5').textContent) + parseInt(document.getElementById('sum0.25').textContent) + parseInt(document.getElementById('sum0').textContent)
 
-    const asupanMakanan = parseInt(document.getElementById('total').textContent) / 16 * 100 > 100 ? 100 : parseInt(document.getElementById('total').textContent) / 16 * 100
+    const menuSelected = (6 - parseInt(count['10'] || 0)) * 4
+    const asupanMakanan = parseInt(document.getElementById('total').textContent) / menuSelected * 100 > 100 ? 100 : parseInt(document.getElementById('total').textContent) / menuSelected * 100
 
-    document.getElementById('asupan-makanan').innerHTML = `Asupan makanan pasien adalah ${asupanMakanan}%`
-    document.getElementById('foodSupply').value = asupanMakanan
+    const foodSupply = isNaN(asupanMakanan.toFixed(2)) ? 0 : asupanMakanan.toFixed(2)
+    document.getElementById('asupan-makanan').innerHTML = `Asupan makanan pasien adalah ${foodSupply}%`
+    document.getElementById('foodSupply').value = foodSupply;
 
-    document.getElementById('sisa-makanan').innerHTML = `Sisa makanan pasien adalah ${100 - asupanMakanan}%`
-    document.getElementById('foodLeft').value = 100 - asupanMakanan
+    const foodLeft = isNaN((100 - asupanMakanan).toFixed(2)) ? 0 : (100 - asupanMakanan).toFixed(2)
+    document.getElementById('sisa-makanan').innerHTML = `Sisa makanan pasien adalah ${foodLeft}%`
+    document.getElementById('foodLeft').value = foodLeft;
 
     document.getElementById('kategori').innerHTML = `Kategori: ${100 - asupanMakanan <= 20 ? '<span style="color: green;">terpenuhi</span>' : '<span style="color: red;">tidak terpenuhi</span>'}`
     document.getElementById('isFulfilled').value = 100 - asupanMakanan <= 20;

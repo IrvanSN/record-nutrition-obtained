@@ -5,7 +5,7 @@ const {
   actionAdd,
   viewEdit,
   actionDelete,
-  actionEdit
+  actionEdit, exportFormData
 } = require("../controller/form");
 const {isLoginAdmin} = require("../middleware/auth");
 
@@ -17,5 +17,6 @@ router.post('/add', isLoginAdmin, actionAdd)
 router.get('/:id/edit', isLoginAdmin, viewEdit)
 router.post('/:id/edit', isLoginAdmin, actionEdit)
 router.post('/:id/delete', isLoginAdmin, actionDelete)
+router.get('/export', exportFormData);
 
 module.exports = router;
