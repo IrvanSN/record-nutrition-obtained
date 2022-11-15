@@ -53,6 +53,7 @@
                                 <td>
                                     <span class="label label-<%= item.isFulfilled ? 'success' : 'danger' %>"><%= item.isFulfilled ? 'Terpenuhi' : 'Tidak Terpenuhi' %></span>
                                 </td>
+                                <% moment.locale('id') %>
                                 <td><%= moment(item.createdAt).format('LLL') %></td>
                                 <td>
                                     <div class="dropleft">
