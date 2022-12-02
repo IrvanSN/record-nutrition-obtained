@@ -38,9 +38,11 @@
                     <table id="recordsListView">
                         <thead>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nomer RM</th>
                             <th>Sisa Makanan</th>
                             <th>Kategori</th>
+                            <th>Ruangan</th>
+                            <th>Auditor</th>
                             <th>Dibuat</th>
                             <th>Aksi</th>
                         </tr>
@@ -54,6 +56,8 @@
                                     <span class="label label-<%= item.isFulfilled ? 'success' : 'danger' %>"><%= item.isFulfilled ? 'Terpenuhi' : 'Tidak Terpenuhi' %></span>
                                 </td>
                                 <% moment.locale('id') %>
+                                <td><%= item.roomName %></td>
+                                <td><%= item.auditorName %></td>
                                 <td><%= moment(item.createdAt).format('LLL') %></td>
                                 <td>
                                     <div class="dropleft">
