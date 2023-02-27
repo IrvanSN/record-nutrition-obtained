@@ -8,7 +8,7 @@ moment.locale('id');
 
 module.exports = {
   index: async (req, res) => {
-    const sort = req.query?.sort === 'desc' ? '-createdAt' : 'createdAt'
+    const sort = req.query?.sort === 'asc' ? 'createdAt' : '-createdAt'
     const startDate = req.query?.startDate ? moment(req.query.startDate) : moment().startOf('month');
     const endDate = req.query?.endDate ? moment(req.query.endDate) : moment();
 
