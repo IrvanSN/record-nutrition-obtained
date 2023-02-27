@@ -4,14 +4,31 @@ const { Parser } = require('json2csv');
 const path = require('path');
 const fs = require('fs');
 
-moment.locale('id')
+moment.locale('id');
 
 module.exports = {
   index: async (req, res) => {
+    const startDate = req.query?.startDate ? moment(req.query.startDate) : moment().startOf('month');
+    const endDate = req.query?.endDate ? moment(req.query.endDate) : moment();
 
-    await Form.find({})
+    await Form.find({
+      createdAt:
+          {
+            $gte: startDate.startOf('day').format(),
+            $lte: endDate.endOf('day').format()
+          }
+    })
+        .sort('-createdAt')
         .then((r) => {
-          res.render('form', { title: 'Daftar Formulir', data: r, moment })
+          res.render('form', {
+            title: 'Daftar Formulir',
+            data: r,
+            moment,
+            totalForm: r.length,
+            startDate: startDate.format('YYYY-MM-DD'),
+            endDate: endDate.format('YYYY-MM-DD'),
+            nowDate: moment().format('YYYY-MM-DD')
+          })
         })
   },
   viewAddForm: async (req, res) => {

@@ -33,8 +33,38 @@
         <!-- Main Content Start -->
         <section class="main--content">
             <div class="panel">
+                <!-- Records Header Start -->
+                <div class="records--header">
+                    <div class="title fa-book">
+                        <h3 class="h3">Daftar Formulir</h3>
+                        <p>Ditemukan total <%- totalForm %> formulir</p>
+                    </div>
+
+                    <div class="actions">
+                        <form method="GET" class="search flex-wrap flex-md-nowrap justify-content-center">
+                            <label class="justify-content-center d-inline-flex">
+                                <span class="label-text col-lg-6 align-self-center mt-2">Tanggal Mulai</span>
+                                <input type="date" class="form-control mt-0 mb-0" name="startDate"
+                                       value="<%- startDate %>"
+                                       min="2022-12-01" max="<%- nowDate %>">
+                            </label>
+                            <label class="justify-content-center d-inline-flex mt-0">
+                                <span class="label-text col-lg-6 align-self-center mt-2">Tanggal Akhir</span>
+                                <input type="date" class="form-control mt-0 mb-0" name="endDate"
+                                       value="<%- endDate %>"
+                                       min="2022-12-01" max="<%- nowDate %>">
+                            </label>
+                            <button type="submit" class="btn btn-rounded mt-0">TAMPILKAN</button>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Records Header End -->
+            </div>
+
+            <div class="panel">
                 <!-- Records List Start -->
-                <div class="records--list" data-title="Daftar Formulir">
+                <div class="records--list" data-title="Formulir">
                     <table id="recordsListView">
                         <thead>
                         <tr>
