@@ -9,6 +9,8 @@ RUN npm ci
 
 COPY . /server
 
-EXPOSE 3030
+RUN apk add -U tzdata
+
+ENV TZ=Asia/Bangkok
 
 CMD ["node", "./bin/www"]
