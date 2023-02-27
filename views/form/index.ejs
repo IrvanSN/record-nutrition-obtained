@@ -42,21 +42,34 @@
 
                     <div class="actions">
                         <form method="GET" class="search flex-wrap flex-md-nowrap justify-content-center">
-                            <label class="justify-content-center d-inline-flex">
-                                <span class="label-text col-lg-6 align-self-center mt-2">Tanggal Mulai</span>
-                                <input type="date" class="form-control mt-0 mb-0" name="startDate"
-                                       value="<%- startDate %>"
-                                       min="2022-12-01" max="<%- nowDate %>">
-                            </label>
-                            <label class="justify-content-center d-inline-flex mt-0">
-                                <span class="label-text col-lg-6 align-self-center mt-2">Tanggal Akhir</span>
-                                <input type="date" class="form-control mt-0 mb-0" name="endDate"
-                                       value="<%- endDate %>"
-                                       min="2022-12-01" max="<%- nowDate %>">
-                            </label>
-                            <button type="submit" class="btn btn-rounded mt-0">TAMPILKAN</button>
+                            <div>
+                                <div>
+                                    <label class="justify-content-center d-inline-flex">
+                                        <span class="label-text col-lg-6 align-self-center mt-2">Tanggal Awal</span>
+                                        <input type="date" class="form-control mt-0 mb-0" name="startDate"
+                                               value="<%- startDate %>"
+                                               min="2022-12-01" max="<%- nowDate %>">
+                                    </label>
+                                    <label class="justify-content-center d-inline-flex mt-0">
+                                        <span class="label-text col-lg-6 align-self-center mt-2">Tanggal Akhir</span>
+                                        <input type="date" class="form-control mt-0 mb-0" name="endDate"
+                                               value="<%- endDate %>"
+                                               min="2022-12-01" max="<%- nowDate %>">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="justify-content-center d-inline-flex mr-lg-5">
+                                        <span class="label-text col-lg-12 align-self-center mt-2">Urutan awal ke akhir</span>
+                                        <input type="radio" id="sort-asc" name="sort" value="asc" <%- sort.includes('-') ? '' : 'checked' %>>
+                                    </label>
+                                    <label class="justify-content-center d-inline-flex mt-0">
+                                        <span class="label-text col-lg-12 align-self-center mt-2">Urutan akhir ke awal</span>
+                                        <input type="radio" id="sort-desc" name="sort" value="desc" <%- sort.includes('-') ? 'checked' : '' %>>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-rounded mt-0 h-25 align-self-center">TAMPILKAN</button>
                         </form>
-
                     </div>
                 </div>
                 <!-- Records Header End -->

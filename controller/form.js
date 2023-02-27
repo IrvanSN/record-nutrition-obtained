@@ -8,6 +8,7 @@ moment.locale('id');
 
 module.exports = {
   index: async (req, res) => {
+    const sort = req.query?.sort === 'desc' ? '-createdAt' : 'createdAt'
     const startDate = req.query?.startDate ? moment(req.query.startDate) : moment().startOf('month');
     const endDate = req.query?.endDate ? moment(req.query.endDate) : moment();
 
@@ -18,7 +19,7 @@ module.exports = {
             $lte: endDate.endOf('day').format()
           }
     })
-        .sort('-createdAt')
+        .sort(sort)
         .then((r) => {
           res.render('form', {
             title: 'Daftar Formulir',
@@ -27,7 +28,8 @@ module.exports = {
             totalForm: r.length,
             startDate: startDate.format('YYYY-MM-DD'),
             endDate: endDate.format('YYYY-MM-DD'),
-            nowDate: moment().format('YYYY-MM-DD')
+            nowDate: moment().format('YYYY-MM-DD'),
+            sort
           })
         })
   },
